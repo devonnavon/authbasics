@@ -8,9 +8,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
-const mongoDb =
-	'mongodb+srv://noshi:noshi@cluster0.te68u.mongodb.net/users?retryWrites=true&w=majority';
+const mongoDb = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.te68u.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
